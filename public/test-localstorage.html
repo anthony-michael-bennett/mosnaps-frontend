@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoSnaps</title>
+  <link rel="stylesheet" href="mo-snaps.css" />
+</head>
+
+<body>
+
+<script type="text/javascript">
+
+// Source - https://stackoverflow.com/questions/45760110/how-to-fill-javascript-localstorage-to-its-max-capacity-quickly
+// Posted by Dalin Huang
+// Retrieved 2025-11-06, License - CC BY-SA 3.0
+
+function getLocalStorageSize() {
+    var len = 0;
+
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const value = localStorage.getItem(key);
+        len += key.length + value.length; // this can be deceptive as the value could contain utf8 multibyte
+    }
+
+    const usedSpaceKB = Math.round((JSON.stringify(localStorage).length / 1024) * 2);
+    console.log(`Current localStorage usage: ${usedSpaceKB} KB`);
+}
+
+function getStorageRemaining() {
+    const limit = 1024 * 1025 * 10; // max allowed, currently 10 MB
+    var i = 0;
+    try {
+        for (i = 250; i <= limit; i += 250) {
+            localStorage.setItem('test', new Array((i * 1024) + 1).join('a'));
+        }
+    } catch (e) {
+        localStorage.removeItem('test');
+        localStorage.setItem('size', i - 250);            
+    }
+}
+
+if (localStorage && !localStorage.getItem('size')) {
+    var i = 0;
+    try {
+        // Test up to 10 MB
+        for (i = 250; i <= 10000; i += 250) {
+            localStorage.setItem('test', new Array((i * 1024) + 1).join('a'));
+        }
+    } catch (e) {
+        localStorage.removeItem('test');
+        localStorage.setItem('size', i - 250);            
+    }
+}
+
+console.log('max localStorage size: ' + (localStorage.getItem('size') / 1024).toFixed(2) + 'Mb');
+
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoSnaps</title>
+  <link rel="stylesheet" href="mo-snaps.css" />
+</head>
+
+<body>
+  <div id="header" class="fadeInUp-animation">
+    <h1>MoSnaps</h1>
+    <p>
+      Snap photos when your camera detects motion.
+    </p>
+  </div>
+
+  <div id="main">
+    <div class="tab-navigation">
+      <button id="video-tab" class="tab-selected">Camera</button>
+      <button id="snap-tab">Snaps</button>
+      <button id="advanced-tab">Advanced Features</button>
+    </div>
+    <div class="tab-contents">
+      <div id="video-tab-contents" class="tab-selected">
+        <p class="controls">
+          <button id="btn-camera-on">Start</button>
+          <button id="btn-camera-off">Stop</button>
+        </p>
+        <p>
+          <ul>
+            <li>The start button will prompt you for access to your camera.</li>
+            <li>Once access is granted images will be captured when motion is detected.</li>
+            <li>You can see captured images in the snaps section.</li>
+            <li>For details on the capture process see Advanced Features.</li>
+          </ul>
+        </p>
+        <video id="video" autoplay></video>
+      </div>
+      <div id="snap-tab-contents" class="snaps-container">
+        
+        
+
+      </div>
+      <div id="advanced-tab-contents">
+        <p>Max Diff: <span id="max-diff"></span></p>
+        <div id="local-storage"></div>
+                <!--
+        <img src="" id="snap-img" />
+        <p>
+          Snaps: <span id="snap-count"></span>
+          Max Diff: <span id="max-diff"></span>
+        </p>
+        <ul id="snaps"></ul>
+      -->
+        <h2>Advanced Features</h2>
+        <p>
+          <ul>
+            <li>Motion detection is done by comparing the current video frame to the previous frame.</li>
+            <li>If the difference between frames exceeds a certain threshold a photo is captured.</li>
+            <li>The sensitivity of motion detection can be adjusted in the code (see mo-snaps.js).</li>
+            <li>Captured images are stored in your browser's local storage.</li>
+            <li>You can delete images from local storage in the Snaps tab.</li>
+            <li>Be aware that local storage has size limits which vary by browser.</li>
+          </ul>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div id="footer"></div>
+  <script type="text/javascript" id="storage-functions">
+    // Creates a storage key based on prefix nad ISO date time.
+    // Later we can sort this kind of key based on when it was created.
+    /*
+    function storageGenKey(prefix) {
+      return prefix + '-' + (new Date()).toISOString();
+    }
+
+    function storageSetItem(key, value) {
+      localStorage.setItem(key, value);
+    }
+
+    function storageGetItem(key) {
+      return localStorage.getItem(key);
+    }
+
+    function storageRemoveItem(key) {
+      return localStorage.removeItem(key);
+    }
+    */
+  </script>
+  <script type="text/javascript" src="mo-tabs.js"></script>
+  <!--<script type="text/javascript" src="mo-snaps.js"></script>-->
+  <script type="text/javascript" src="motion-detector.js"></script>
+  <script type="text/javascript" src="camera.js"></script>
+  <script type="text/javascript" src="image-snaps.js"></script>
+  <script type="text/javascript" src="storage.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+</body>
+
+</html>
