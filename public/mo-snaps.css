@@ -1,3 +1,18 @@
+html, body {
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+  width: 100%; /* Ensures the body takes up full width */
+  touch-action: pan-y; /* prevents from letting user slide the page left and right */
+  margin:0;
+  padding:0;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
 @keyframes fadeInUp {
   0% {
     transform: translateY(20%);
@@ -57,21 +72,15 @@ body {
   text-align: center;
   color: #777777;
   background-color: #deeef0;
-  ;
   border-radius: 12px;
 }
 
 .snaps-list li {
   display: inline-block;
-  margin: 25px 15px;
-  padding: 10px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  width:120px;
+  margin: 15px 5px;
+  padding: 0;
   background-color: #ffffff;
-  background-image: linear-gradient(0deg, rgb(255, 255, 255) 75%, rgb(221, 221, 221) 100%);
-}
-
-.snaps-list li img {
-  border: 1px solid transparent;
 }
 
 .snaps-list li img:hover {
@@ -80,7 +89,7 @@ body {
 }
 
 .snaps-list li img {
-  width: 200px;
+  width: 100%;
 }
 
 #snaps-modal {
@@ -103,6 +112,9 @@ body {
   padding: 10px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   background-image: linear-gradient(0deg, rgb(255, 255, 255) 75%, rgb(221, 221, 221) 100%);
+}
+.snaps-full img {
+  width: 100%;
 }
 
 button {
@@ -168,4 +180,5 @@ button:hover {
 
 #main {
   display: block;
+  margin: 0 10px 0 10px;
 }

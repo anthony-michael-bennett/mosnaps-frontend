@@ -16,9 +16,11 @@ ImageSnaps.prototype.setupModal = function() {
   modal = document.createElement('div');
   modal.id = 'snaps-modal';
   document.querySelector('body').appendChild(modal);
+
+  // role=button helps IOS understand click event on image
   modal.innerHTML = [
    '<div class="snaps-full">',
-      '<img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" id="snaps-full-image" />',
+      '<span role="button"><img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" id="snaps-full-image"/></span>',
       '<p><span id="snaps-full-image-key"></span></p>',
       '<p>',
         '<button id="btn-snaps-modal-close">close</button>',
@@ -43,6 +45,10 @@ ImageSnaps.prototype.setupModal = function() {
     self.deleteImage(imageKey);
   });
 
+  fullImage.addEventListener('click', function() {
+    self.modalHide();
+  });
+
   return {
     'container': modal,
     'btnFullPageClose': btnFullpageClose,
@@ -60,7 +66,7 @@ var container = document.querySelector('.snaps-container');
     '<p class="controls">',
     '  <button id="btn-select-all">Select All</button>',
     '  <button id="btn-deselect-all">Deselect All</button>',
-    '  <button id="btn-delete-selected" class="red-button">Delete Selected</button>',
+    '  <button id="btn-delete-selected" class="red-button">Delete</button>',
     '</p>',
     '<img class="snaps-last-image" />',
     '<p>Usage: <span class="snaps-usage"></span> MB</p>',
