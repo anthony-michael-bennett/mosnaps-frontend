@@ -24,15 +24,22 @@ onLoad(function () {
 
   var motionDetector = new MotionDetector(video);
 
+  // max diff helps us to adjust threshold
+  var elMaxDiff = document.getElementById('max-diff');
+
   btnCameraOn.addEventListener('click', function () {
 
-    motionDetector.start(function(video) {
+    motionDetector.start(function(motionData) {
 
-      snaps.snapImage(video, function(imageDataURL) {
-        //snapImg.src = imageDataURL;
-        snaps.list();
-        updateStorageEstimates();
-      });
+      elMaxDiff.innerHTML = motionData.maxDiff;
+
+      if (motionData.motionDetected) {
+        snaps.snapImage(video, function(imageDataURL) {
+          snaps.list();
+          updateStorageEstimates();
+        });
+      }
+
     });
 
   });

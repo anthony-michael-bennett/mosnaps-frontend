@@ -67,8 +67,6 @@ MotionDetector.prototype.detect = function (callback) {
 MotionDetector.prototype.detectIteration = function (prevPixels, callback) {
   var video = this.video;
   var context = this.context;
-  // max diff helps us to adjust threshold
-  var elMaxDiff = document.getElementById('max-diff');
 
   // drawing grayscale to make diff faster only using one channel for luminosity
   context.drawImageGrayscale(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, context.canvas.width, context.canvas.height);
@@ -81,6 +79,7 @@ MotionDetector.prototype.detectIteration = function (prevPixels, callback) {
   }
 
   var maxDiff = 0;
+  var motionDetected = false;
 
   // Compare current frame with previous frame
   for (var i = 0; i < pixels.length; i += 4) {
@@ -91,13 +90,16 @@ MotionDetector.prototype.detectIteration = function (prevPixels, callback) {
 
     // If difference is greater than threshold, motion is detected
     if (diff > this.threshold) {
-      // elMaxDiff.innerHTML = maxDiff;
-      callback(video);
+      motionDetected = true;
       break;
     }
   }
 
-  elMaxDiff.innerHTML = maxDiff;
+    callback({
+      "video": video,
+      "motionDetected": motionDetected,
+      "maxDiff": maxDiff
+    });
 
   // Store current frame for the next comparison
   return pixels;
