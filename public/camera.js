@@ -3,11 +3,12 @@ function Camera(video) {
 }
 
 Camera.prototype.on = function(callback) {
+  var self = this;
   navigator.mediaDevices.getUserMedia({ audio: false, video: true })
     .then(
         function (stream) {
-            this.video.srcObject = stream;
-            this.video.addEventListener('loadeddata', function () {
+            self.video.srcObject = stream;
+            self.video.addEventListener('loadeddata', function () {
                 video.play();
                 callback(video);
             }, { "once" : true});
