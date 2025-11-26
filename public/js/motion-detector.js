@@ -11,14 +11,14 @@ CanvasRenderingContext2D.prototype.drawImageGrayscale = function () {
   return retVal;
 };
 
-function MotionDetector(video) {
+function MotionDetector(video, canvasMotionDetector) {
   this.detectTimeout = null;
   this.width = 100
   this.height = 100;
   this.threshold = 64;
   this.delay = 1000;
   this.video = video;
-  this.canvas = document.createElement('canvas');
+  this.canvas = canvasMotionDetector ? canvasMotionDetector : document.createElement('canvas');
   this.context = this.canvas.getContext('2d');
   this.camera = new Camera(video);
 };
@@ -45,7 +45,7 @@ MotionDetector.prototype.scaleToVideo = function () {
   var scale = Math.min(this.width / w, this.height / h);
   canvas.width = Math.floor(w * scale);
   canvas.height = Math.floor(h * scale);
-  console.log(`MotionDetector:  canvas.width=${canvas.width}, canvas.height=${canvas.height}`)
+  canvas.style=`width:${w}px;height:${h}px`;
 };
 
 MotionDetector.prototype.detect = function (callback) {

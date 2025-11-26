@@ -21,8 +21,12 @@ onLoad(function () {
   var btnCameraOn = document.getElementById('btn-camera-on');
   var btnCameraOff = document.getElementById('btn-camera-off');
   var video = document.getElementById('video');
+  var imgSnapLast = document.getElementById('img-snap-last');
+  var canvasMotionDetector = document.getElementById('canvas-motion-detector');
+  var motionDetector = new MotionDetector(video, canvasMotionDetector);
 
-  var motionDetector = new MotionDetector(video);
+  // Hiding the camera for now and instead showing the motion detection canvas.
+  video.style.display='none';
 
   // max diff helps us to adjust threshold
   var elMaxDiff = document.getElementById('max-diff');
@@ -35,6 +39,9 @@ onLoad(function () {
 
       if (motionData.motionDetected) {
         snaps.snapImage(video, function(imageDataURL) {
+          // Not sure if we should show last snap since snaps already appear
+          // in the snaps list.
+          // imgSnapLast.src=imageDataURL;
           snaps.list();
           updateStorageEstimates();
         });

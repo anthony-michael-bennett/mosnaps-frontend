@@ -188,3 +188,8 @@ button:hover {
   text-align: center;
   padding:10px 0 0 0;
 }
+
+#canvas-motion-detector {
+  image-rendering: crisp-edges; /* For older browsers */
+  image-rendering: pixelated; /* Modern browsers */
+}

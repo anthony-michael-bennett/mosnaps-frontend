@@ -32,6 +32,9 @@
           <button id="btn-camera-on">Start</button>
           <button id="btn-camera-off">Stop</button>
         </p>
+        <video id="video" autoplay></video>
+        <img id="img-snap-last" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+        <canvas id="canvas-motion-detector"></canvas>
         <p>
           <ul>
             <li>The start button will prompt you for access to your camera.</li>
@@ -40,13 +43,8 @@
             <li>For details on the capture process see Advanced Features.</li>
           </ul>
         </p>
-        <video id="video" autoplay></video>
       </div>
-      <div id="snap-tab-contents" class="snaps-container">
-        
-        
-
-      </div>
+      <div id="snap-tab-contents" class="snaps-container"></div>
       <div id="advanced-tab-contents">
         <p>Max Diff: <span id="max-diff"></span></p>
         <div id="local-storage"></div>

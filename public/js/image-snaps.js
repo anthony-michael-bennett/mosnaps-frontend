@@ -68,7 +68,6 @@ var container = document.querySelector('.snaps-container');
     '  <button id="btn-deselect-all">Deselect All</button>',
     '  <button id="btn-delete-selected" class="red-button">Delete</button>',
     '</p>',
-    '<img class="snaps-last-image" />',
     '<p>Usage: <span class="snaps-usage"></span> MB</p>',
     '<p>Count: <span class="snaps-count"></span></p>',
     '<ul class="snaps-list"></ul>'
@@ -76,7 +75,6 @@ var container = document.querySelector('.snaps-container');
 
   var ui = {
     'container': container,
-    'img': container.querySelector('.snaps-last-image'),
     'ul': container.querySelector('.snaps-list'),
     'spanUsage': container.querySelector('.snaps-usage'),
     'spanCount': container.querySelector('.snaps-count'),
@@ -137,7 +135,6 @@ ImageSnaps.prototype.getImageFromVideo = function (video) {
 
   context.drawImage(video, 0, 0, w, h);
   var imageDataURL = context.canvas.toDataURL('image/jpeg', this.jpegQuality);
-  this.ui.img.src = imageDataURL;
   return imageDataURL;
 };
 
